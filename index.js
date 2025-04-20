@@ -4,7 +4,7 @@ const cors = require("cors")
 const { Sequelize } = require("sequelize")
 const io = require("socket.io")
 
-const sequelize = new Sequelize("login-qr-socket","postgres","0psqlpassword0",{
+const sequelize = new Sequelize("login_qr_socket","postgres","0psqlpassword0",{
     host:"localhost",
     dialect:"postgres"
 })
