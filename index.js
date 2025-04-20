@@ -45,6 +45,10 @@ app.get("/api/qrcode/new",async(req,res)=>{
         if ((await QR.findAll()).length!==0) {
             await QR.update({
                 qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
+            },{
+                where:{
+                    id:1
+                }
             })
         } else {
             await QR.create({
@@ -74,6 +78,10 @@ app.get("/api/user/new",async(req,res)=>{
             await Users.update({
                 username:"username",
                 password:"12345678"
+            },{
+                where:{
+                    id:1
+                }
             })
         } else {
             await Users.create({
