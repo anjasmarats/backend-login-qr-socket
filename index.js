@@ -34,6 +34,9 @@ sequelize.sync().then().catch(e=>console.error(e))
 
 io.on("connection",(socket)=>{
     console.log("client-connected")
+    socket.on("login-success",(data)=>{
+        socket.emit("success","suksess")
+    })
 })
 
 app.use(express.json())
@@ -141,10 +144,6 @@ app.post("/api/login",async(req,res)=>{
                 qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
             })
         }
-
-        io.on("connection",(socket)=>{
-            socket.emit("login-success","Success Login")
-        })
 
         return res.status(200).json()
     } catch (error) {
