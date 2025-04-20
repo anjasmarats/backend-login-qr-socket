@@ -67,7 +67,11 @@ app.get("/api/qrcode/new",async(req,res)=>{
 
 app.get("/api/qrcode/",async(req,res)=>{
     try {
-        const qr = await QR.findOne()
+        const qr = await QR.findOne({
+            where:{
+                id:1
+            }
+        })
         return res.status(200).json({qr:qr.qrcode})
     } catch (error) {
         console.error("error getqr",error)
