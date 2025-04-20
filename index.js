@@ -33,7 +33,7 @@ const QR = sequelize.define("QRCode",{
 sequelize.sync().then().catch(e=>console.error(e))
 
 io.on("connection",(socket)=>{
-    socket.emit("login-success","success login")
+    console.log("client-connected")
 })
 
 app.use(express.json())
@@ -84,6 +84,10 @@ app.post("/api/login",async(req,res)=>{
         await QR.destroy()
         await QR.create({
             qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
+        })
+
+        io.on("connection",(socket)=>{
+            socket.emit("login-success","Success Login")
         })
 
         return res.status(200).send("OK")
