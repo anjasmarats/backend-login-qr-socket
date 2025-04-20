@@ -128,7 +128,7 @@ app.post("/api/login",async(req,res)=>{
             socket.emit("login-success","Success Login")
         })
 
-        return res.status(200).json({})
+        return res.status(200).json()
     } catch (error) {
         console.error("error login",error)
         return res.status(500).json()
