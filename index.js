@@ -128,6 +128,7 @@ app.post("/api/login",async(req,res)=>{
         })
 
         if (!user) {
+            console.error("error",user)
             return res.status(400).json()
         }
 
