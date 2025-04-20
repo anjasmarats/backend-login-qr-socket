@@ -48,6 +48,16 @@ app.get("/api/qrcode/new",async(req,res)=>{
         })
         return res.status(200).send("OK")
     } catch (error) {
+        console.error("error getqrnw",error)
+        return res.status(500).json()
+    }
+})
+
+app.get("/api/qrcode/",async(req,res)=>{
+    try {
+        const qr = await QR.findAll()
+        return res.status(200).json({qr})
+    } catch (error) {
         console.error("error getqr",error)
         return res.status(500).json()
     }
