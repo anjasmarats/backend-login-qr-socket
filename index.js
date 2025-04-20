@@ -70,8 +70,6 @@ app.get("/api/qrcode/",async(req,res)=>{
 
 app.get("/api/user/new",async(req,res)=>{
     try {
-        await Users.destroy()
-        
         if ((await Users.findAll()).length!==0) {
             await Users.update({
                 username:"username",
@@ -86,7 +84,7 @@ app.get("/api/user/new",async(req,res)=>{
 
         return res.status(200).send("OK")
     } catch (error) {
-        console.error("error user new")
+        console.error("error user new",error)
         return res.status(500).json()
     }
 })
