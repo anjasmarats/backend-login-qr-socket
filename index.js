@@ -42,10 +42,15 @@ app.use(cors())
 
 app.get("/api/qrcode/new",async(req,res)=>{
     try {
-        await QR.destroy()
-        await QR.create({
-            qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
-        })
+        if ((await QR.findAll()).length!==0) {
+            await QR.update({
+                qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
+            })
+        } else {
+            await QR.create({
+                qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
+            })
+        }
         return res.status(200).send("OK")
     } catch (error) {
         console.error("error getqrnw",error)
@@ -66,10 +71,18 @@ app.get("/api/qrcode/",async(req,res)=>{
 app.post("/api/user/new",async(req,res)=>{
     try {
         await Users.destroy()
-        await Users.create({
-            username:"username",
-            password:"12345678"
-        })
+        
+        if ((await Users.findAll()).length!==0) {
+            await Users.update({
+                username:"username",
+                password:"12345678"
+            })
+        } else {
+            await Users.create({
+                username:"username",
+                password:"12345678"
+            })
+        }
 
         return res.status(200).send("OK")
     } catch (error) {
@@ -91,10 +104,15 @@ app.post("/api/login",async(req,res)=>{
             return res.status(400).json()
         }
 
-        await QR.destroy()
-        await QR.create({
-            qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
-        })
+        if ((await QR.findAll()).length!==0) {
+            await QR.update({
+                qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
+            })
+        } else {
+            await QR.update({
+                qrcode:Array.from({length: 10}, () => Math.random().toString(36)[2]).join('')
+            })
+        }
 
         io.on("connection",(socket)=>{
             socket.emit("login-success","Success Login")
