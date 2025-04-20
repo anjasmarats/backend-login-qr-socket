@@ -11,7 +11,7 @@ const sequelize = new Sequelize("login_qr_socket","postgres","0psqlpassword0",{
 
 const Users = sequelize.define("Users",{
     id:{
-        type:DataTypes.INT,
+        type:DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true
     },
