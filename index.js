@@ -97,6 +97,24 @@ app.get("/api/user/new",async(req,res)=>{
     }
 })
 
+app.get("/api/cek/:id",async(req,res)=>{
+    try {
+        const qrcode = await QR.findOne({
+            where:{
+                id:1
+            }
+        })
+        if (qrcode.qrcode!==req.params.id) {
+            return res.status(400).json()
+        } else {
+            return res.status(200).json()
+        }
+    } catch (error) {
+        console.error("error user new",error)
+        return res.status(500).json()
+    }
+})
+
 app.post("/api/login",async(req,res)=>{
     try {
         const { username,password } = req.body
