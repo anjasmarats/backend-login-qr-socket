@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
-const { Sequelize } = require("sequelize")
+const { Sequelize,DataTypes } = require("sequelize")
 const io = require("socket.io")
 
 const sequelize = new Sequelize("login_qr_socket","postgres","0psqlpassword0",{
