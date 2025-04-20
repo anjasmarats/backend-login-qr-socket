@@ -35,6 +35,7 @@ sequelize.sync().then().catch(e=>console.error(e))
 io.on("connection",(socket)=>{
     console.log("client-connected")
     socket.on("login-success",(data)=>{
+        console.log("login-sukses")
         socket.emit("success","suksess")
     })
 })
