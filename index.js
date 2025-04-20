@@ -68,7 +68,7 @@ app.get("/api/qrcode/",async(req,res)=>{
     }
 })
 
-app.post("/api/user/new",async(req,res)=>{
+app.get("/api/user/new",async(req,res)=>{
     try {
         await Users.destroy()
         
